@@ -6,13 +6,16 @@ import React from "react";
 import { useState } from "react";
 // import { useMetamaskAuth, withConnectedRoute } from "../auth/authConfig";
 import { JUST_LOGGED_IN } from "../constants/routes";
+import axios from "axios";
 import AddImages from "./addImages";
-import { sendOTP, verifyOTP } from "./api/otpVerification";
+const API_URL = process.env.SERVER_URL || "";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
-const invalidNumber = () => {toast("Enter a Valid No.")};
+const invalidNumber = () => {
+  toast("Enter a Valid No.");
+};
 
 // import { sendOTP, verifyOTP } from "../pages/api/otpVerification.js";
 
@@ -21,11 +24,46 @@ const Registration = () => {
 
   const router = useRouter();
   const [date, setDate] = useState(null);
+  const [receivedOtp, setReceivedOtp] = useState("");
+  // const [inputOtp, setInputOTP] = useState('');
+  const [successVerify, setSuccessVerify] = useState("");
   const [otp, setOTP] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [phone, setPhone] = useState("");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [correctOtp, setCorrectOtp] = useState(false);
+
+  const customAxios = axios.create({
+    baseURL: API_URL,
+  });
+
+  const sendOTP = async (phone) => {
+    console.log("Hii");
+
+    const response = await customAxios.post("/apis/sendOTP", { phone });
+    setReceivedOtp(response.data.data);
+    console.log(response.data.data);
+
+    if (response.status === 400 || response.status === 500) return false;
+    return true;
+  };
+
+  const verifyOTP = async (phone, code) => {
+    const response = await customAxios.post("/apis/verifyOTP", { phone, code });
+    console.log(response.data.success);
+    setSuccessVerify(response.data.success);
+    console.log("Check") 
+      
+    // console.log (inputOtp === receivedOtp)
+    if (response.status === 400 || response.data.success === false)
+      return false;
+    return true;
+  };
+
+  if (typeof window !== "undefined") {
+    window.sendOTP = sendOTP;
+    window.verifyOTP = verifyOTP;
+  }
 
   const onClickOtp = () => {
     sendOTP(phone);
@@ -33,6 +71,12 @@ const Registration = () => {
 
   const onCreateAccountHandler = (e) => {
     e.preventDefault();
+    if (e.target.firstName.value.trim() === undefined || e.target.lastName.value.trim() === undefined){
+      return;
+    }
+    else{
+      console.log("SUCCESS LOGIN");
+    }
     console.log(e.target.firstName.value);
     console.log(e.target.lastName.value);
 
@@ -48,6 +92,7 @@ const Registration = () => {
 
   const onClickVerify = () => {
     verifyOTP(phone, otp);
+    // setInputOTP(otp);
     if (verifyOTP) {
       setCorrectOtp(true);
     }
@@ -165,9 +210,9 @@ const Registration = () => {
           <div className="flex flex-row mt-[40px] items-center font-medium">
             <button
               type="submit"
-              disabled={!correctOtp}
+              disabled={!successVerify}
               className={
-                correctOtp
+                successVerify
                   ? "bg-blue py-[8px] px-[24px] rounded-lg text-white"
                   : "bg-gray-400  py-[8px] px-[24px] rounded-lg text-white"
               }

@@ -2,6 +2,11 @@ import { useState } from "react"
 
 const Borrow = () => {
     const [eligible, setEligible] = useState(false)
+
+    const onConfirmBorrowClickHandler = () => {
+
+    }
+    
     return (
         <div className="flex flex-col gap-y-[30px] w-[100%] h-[100%] text-white p-[20px] px-[30px] text-inter">
             <div className="flex flex-row items-center">
@@ -55,13 +60,14 @@ const Borrow = () => {
                 </div>
             </div>
 
-            <div className="text-slate-300 text-center">
+            {eligible && <div className="text-slate-300 text-center">
                 Congratulations 🎉 you are eligible for borrowing
-            </div>
+            </div>}
 
             <button
                 type="submit"
-                className="bg-blue py-[8px] px-[24px] rounded-lg text-white justify-center self-center font-inter font-medium"
+                disabled={!eligible}
+                className={`bg-blue py-[8px] px-[24px] rounded-lg text-white justify-center self-center font-inter font-medium ${!eligible && "opacity-50 cursor-not-allowed"}`}
             >
                 Confirm Borrow
             </button>

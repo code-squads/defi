@@ -20,8 +20,8 @@ const TEMP = [
         collateralAmt: '5000'
     }
 ]
-const Lend = () => {
-    const [selectedBorrower, setSelectedBorrower] = useState(null)
+const MyBorrowings = () => {
+    const [selectedLender, setselectedLender] = useState(null)
 
     const onConfirmLendClickHandler = () => {
         
@@ -30,10 +30,10 @@ const Lend = () => {
     return (
         <div className="flex flex-col gap-y-[30px] w-[100%] h-[100%] text-white p-[20px] px-[30px] text-inter">
             
-            {!selectedBorrower && <div className="flex flex-col gap-y-[20px]">
+            {!selectedLender && <div className="flex flex-col gap-y-[20px]">
 
                 <div className=" font-inter text-[18px] font-medium border-b-[1px] pb-[10px] border-gray-400">
-                    Borrowers List
+                    Borrowings
                 </div>
             {
                 TEMP.map((data, index) => {
@@ -50,7 +50,7 @@ const Lend = () => {
                                         <img className="w-[20px] h-[20px] rounded-full ml-[5px]" src="./assets/usdc.svg" alt="usdcLogo"/>
                                     </div>
                                     <div className="text-gray-200 text-[10px] font-medium">{data.address}</div>
-                                    <div className="text-[14px]">{data.repay} days</div>
+                                    <div className="text-[14px]">{data.repay} days <span className="text-gray-400 text-[12px] ml-[5px]">remaining to repay</span></div>
                                     <div className="flex flex-row items-center text-[14px]">
                                         <div>Collateral amount: </div>
                                         &nbsp;{data.collateralAmt}
@@ -63,9 +63,9 @@ const Lend = () => {
                                 <button
                                     type="submit"
                                     className="bg-blue py-[8px] px-[24px] ml-auto rounded-lg text-white font-inter font-medium self-start"
-                                    onClick={() => {setSelectedBorrower(data)}}
+                                    onClick={() => {setselectedLender(data)}}
                                 >
-                                    Lend
+                                    Repay
                                 </button>
                             </div>
                             {
@@ -78,11 +78,11 @@ const Lend = () => {
             </div>}
 
             {
-                selectedBorrower &&
+                selectedLender &&
 
                 <>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 cursor-pointer"
-                        onClick={() => {setSelectedBorrower(null)}}
+                        onClick={() => {setselectedLender(null)}}
                     >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
@@ -93,7 +93,7 @@ const Lend = () => {
                             Loan amount:
                         </div>
 
-                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none">{selectedBorrower.amount}</div>
+                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none">{selectedLender.amount}</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[25px] bg-[#404557]">
                             <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                             USDC
@@ -101,8 +101,8 @@ const Lend = () => {
                     </div>
 
                     <div className="flex flex-row items-center">
-                        <div className="font-inter text-[16px] font-medium">Expected repay duration:</div>
-                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none">{selectedBorrower.repay}</div>
+                        <div className="font-inter text-[16px] font-medium">Remaining days to Repay:</div>
+                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none">{selectedLender.repay}</div>
                         <div>days</div>
                     </div>
 
@@ -127,7 +127,18 @@ const Lend = () => {
 
                     <div className="flex flex-row items-center">
                         
-                        <div className="font-inter text-[16px] font-medium">Required collateral:</div>
+                        <div className="font-inter text-[16px] font-medium">Total Repay Amount:</div>
+                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
+                        <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
+                                <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
+                            USDC
+                        </div>
+
+                    </div>
+
+                    <div className="flex flex-row items-center">
+                        
+                        <div className="font-inter text-[16px] font-medium">Collateral to be release by us:</div>
                         <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                             <div className="flex justify-center w-[30px] h-[30px] rounded-full bg-white p-[4px] box-border">
@@ -141,7 +152,7 @@ const Lend = () => {
                         type="submit"
                         className="bg-blue py-[8px] px-[24px] rounded-lg text-white justify-center self-center font-inter font-medium"
                     >
-                        Confirm Lend
+                        Repay Now
                     </button>
 
                     <div className="flex flex-row items-center gap-x-[5px] font-[300] text-gray-400 text-[12px] self-center mt-[-10px]">
@@ -169,4 +180,4 @@ const Lend = () => {
     )
 }
 
-export default Lend
+export default MyBorrowings

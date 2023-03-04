@@ -4,7 +4,7 @@ import { CallerFn, SenderFn } from "./factory";
 export const getProfile = (address) => {
   if(!address)
     console.log("Address invalid");
-  return CallerFn('getUser', true, address);
+  return CallerFn('getUser', false, address);
 }
 
 export const createProfile = (address, name) => {

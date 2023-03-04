@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useMetamaskAuth } from "../../auth/authConfig";
 import { LANDING_PAGE, ONBOARDING_ROUTE } from "../../constants/routes";
@@ -7,6 +8,11 @@ import { LANDING_PAGE, ONBOARDING_ROUTE } from "../../constants/routes";
 const Navbar = () => {
   const { connect, isLoggedIn, metaState, isProcessingLogin } = useMetamaskAuth();
   const router = useRouter();
+  const [pathname, setPathname] = useState('')
+
+  useEffect(() => {
+    setPathname(router.pathname)
+  }, [router])
 
   function disconnect() {
     // Not sure how to do this yet :/
@@ -16,9 +22,16 @@ const Navbar = () => {
   return (
     <div className="flex flex-row items-center w-[100%] h-[55px] px-[50px] box-border border-b-[1.2px] font-inter text-[24px] border-[#E1E1E1] bg-[#12131A] text-white cursor-pointer">
       <div className="h-[30px] w-[30px] bg-yellow-200 mr-[15px]"></div>
-      <Link href={LANDING_PAGE}>AppName</Link>
+      <Link href={"/dashboard"}>AppName</Link>
 
-      <div className="flex flex-row gap-x-[60px] ml-auto text-[14px] font-medium font-inter text-white">
+      <div className="flex flex-row items-center gap-x-[60px] ml-auto text-[14px] font-medium font-inter text-white">
+        {pathname == '/dashboard' 
+          ?
+            <Link href={"/myaccount"} className="text-[16px] font-[500] text-white">My Account</Link>
+          :
+            <Link href={"/dashboard"} className="text-[16px] font-[500] text-white">My Dashboard</Link>
+        }
+
         {!isProcessingLogin ? (
           isLoggedIn ? (
             <button

@@ -34,7 +34,7 @@ const DashLeft = () => {
   }, []);
 
   return (
-    <div className="w-[100%] h-[100%] font-inter" style={{backgroundColor : '#12131A'}}>
+    <div className="w-[100%] h-[100%] font-inter overflow-auto" style={{backgroundColor : '#12131A'}}>
       {/* PROFILE */}
       <Container className="text-white">
         <div className="flex p-5">

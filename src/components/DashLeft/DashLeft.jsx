@@ -80,25 +80,31 @@ const DashLeft = () => {
 
       {/* CARDS */}
       <Container
-        className="bg-slate-300 m-10 p-5"
+        className="bg-slate-300 m-10 p-5 rounded-xl"
         style={{
           maxWidth: "90%",
           backgroundColor: "#1b1e29",
-          borderRadius: "20px",
+          // borderRadius: "20px",
           color: "#c7cad9",
         }}
       >
         <div>
           <div className="flex justify-between">
-            <div className="flex">
-              <Image
+            <div className="flex items-center">
+              {/* <Image
                 src={matic}
                 alt="matic"
                 width="50"
                 height="50"
                 style={{ borderRadius: "50px" }}
-              />
-              <span className="m-2">MATIC</span>
+              /> */}
+              <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
+                  <div className="flex justify-center w-[40px] h-[40px] rounded-full bg-white p-[4px] box-border">
+                    <img src="./assets/matic.svg" alt="maticLogo"/>
+                  </div>
+                  MATIC
+              </div>
+              {/* <span className="m-2">MATIC</span> */}
             </div>
             <div>
               <div style={{ color: "#696c80" }}>Price</div>
@@ -107,21 +113,25 @@ const DashLeft = () => {
               </div>
             </div>
           </div>
-          <div className="m-2 h-1"></div>
+          <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden"></div>
         </div>
         <hr style={{ background: "#C77DFF", height: "0.05px" }} />
 
         <div>
           <div className="flex justify-between mt-3">
             <div className="flex">
-              <Image
+              {/* <Image
                 src={usdc}
                 alt="matic"
                 width="50"
                 height="50"
                 style={{ borderRadius: "50px" }}
-              />
-              <span className="m-2">USDT</span>
+              /> */}
+              <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
+                  <img className="w-[40px] h-[40px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
+                  USDT
+              </div>
+              {/* <span className="m-2">MATIC</span> */}
             </div>
             <div>
               <div>Price</div>
@@ -130,14 +140,85 @@ const DashLeft = () => {
               </div>
             </div>
           </div>
-          <div className="mt-2">
-            0x466DD1e48570FAA2E7f69B75139813e4F8EF75c2
+          <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div>
+        </div>
+      </Container>
+
+      <Container
+        className="bg-slate-300 m-10 p-5 rounded-xl"
+        style={{
+          maxWidth: "90%",
+          backgroundColor: "#1b1e29",
+          // borderRadius: "20px",
+          color: "#c7cad9",
+        }}
+      >
+        <div>
+        <div className="flex justify-between mb-5" style={{ color: "#696c80" }}>
+          <div className="pl-[28px]">My tokens</div>
+          <div>Current Value</div>
+        </div>
+          <div className="flex justify-between mb-4">
+            <div className="flex items-center">
+              {/* <Image
+                src={matic}
+                alt="matic"
+                width="50"
+                height="50"
+                style={{ borderRadius: "50px" }}
+              /> */}
+              <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
+                  <div className="flex justify-center w-[40px] h-[40px] rounded-full bg-white p-[4px] box-border">
+                    <img src="./assets/matic.svg" alt="maticLogo"/>
+                  </div>
+                  MATIC
+              </div>
+              {/* <span className="m-2">MATIC</span> */}
+            </div>
+            <div>
+              <div style={{ color: "#696c80" }}>Price</div>
+              <div>
+                {maticVal.rate !== undefined
+                  ? maticVal.rate
+                  : Math.round(dummyMatic).toFixed(2)}
+              </div>
+            </div>
           </div>
+          {/* <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div> */}
+        </div>
+        <hr style={{ background: "#C77DFF", height: "0.05px" }} />
+
+        <div>
+          <div className="flex justify-between mt-3 mb-2">
+            <div className="flex">
+              {/* <Image
+                src={usdc}
+                alt="matic"
+                width="50"
+                height="50"
+                style={{ borderRadius: "50px" }}
+              /> */}
+              <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
+                  <img className="w-[40px] h-[40px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
+                  USDC
+              </div>
+              {/* <span className="m-2">MATIC</span> */}
+            </div>
+            <div>
+              <div>Price</div>
+              <div>
+                {usdVal.rate !== undefined
+                  ? usdVal.rate
+                  : Math.round(dummyMatic).toFixed(2)}
+              </div>
+            </div>
+          </div>
+          {/* <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div> */}
         </div>
       </Container>
 
       {/* User's balance details  */}
-      <Container
+      {/* <Container
         className="bg-slate-300 m-10 rounded-xl p-5 "
         style={{
           maxWidth: "90%",
@@ -169,7 +250,7 @@ const DashLeft = () => {
               </div>
             </div>
           </div>
-          <div className="m-2 h-1"></div>
+          <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div>
         </div>
         <hr style={{ background: "#C77DFF", height: "0.05px" }} />
         <div>
@@ -192,7 +273,7 @@ const DashLeft = () => {
           </div>
           <div className="mt-2"></div>
         </div>
-      </Container>
+      </Container> */}
     </div>
   );
 };

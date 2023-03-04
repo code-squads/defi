@@ -11,8 +11,7 @@ export const sendOTP = async phone => {
     console.log("Hii");
 
     const response = await customAxios.post('/apis/sendOTP', {phone});
-    // console.log(response);
-    console.log(response.data.data.message);
+    console.log(response);
 
     if(response.status === 400 || response.status === 500)
         return false;

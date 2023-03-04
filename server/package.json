@@ -22,6 +22,7 @@
     "fast-two-sms": "^3.0.0",
     "mongoose": "^6.1.1",
     "nodemon": "^2.0.15",
+    "spline": "^0.0.0",
     "styled-components": "^5.3.8",
     "twilio": "^3.71.3",
     "uuid": "^8.3.2"

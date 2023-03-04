@@ -28,7 +28,7 @@ contract Defi {
 
     IERC20 public usdt;
     address public constant USDT_ADDRESS = 0x466DD1e48570FAA2E7f69B75139813e4F8EF75c2;
-                                           
+                       
     // Cask USDT - 0x466dd1e48570faa2e7f69b75139813e4f8ef75c2
     // 0x3B00eF4360238C8d13d3A23b44B1DA047E1eDdDf
     // 0x4987D9DDe3b2e059dB568fa26D7Eb38F40956013
@@ -82,6 +82,10 @@ contract Defi {
             loanRepayed: false,
             loanSquaredOff: false
         }));
+    }
+
+    function getLoans() public view returns (Loan[] memory){
+        return loans;
     }
 
     function getLoan(uint256 _loanId) public view returns (Loan memory) {

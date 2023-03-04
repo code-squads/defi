@@ -22,7 +22,7 @@ const DashLeft = () => {
 
   const dummyMatic = "3260.351432121505620812986766";
   var myHeaders = new Headers();
-  myHeaders.append("X-CoinAPI-Key", "272E2537-42DC-4DE3-BB31-89072ACE051D");
+  myHeaders.append("X-CoinAPI-Key", "647D5F57-3B4D-47C1-9DD1-96D18F069E07");
 
   var requestOptions = {
     method: "GET",

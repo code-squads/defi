@@ -96,7 +96,7 @@ const MyBorrowings = () => {
                         <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none">{selectedLender.amount}</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[25px] bg-[#404557]">
                             <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
-                            USDC
+                            USDT
                         </div>
                     </div>
 
@@ -120,7 +120,7 @@ const MyBorrowings = () => {
                         <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                                 <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
-                            USDC
+                            USDT
                         </div>
 
                     </div>
@@ -131,7 +131,7 @@ const MyBorrowings = () => {
                         <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                                 <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
-                            USDC
+                            USDT
                         </div>
 
                     </div>

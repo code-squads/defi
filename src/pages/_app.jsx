@@ -59,8 +59,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>SourceTrace</title>
-        <meta name="description" content="Decentralized Supply chain tracker" />
+        <title>DeFi</title>
+        <meta name="description" content="Decentralized Finance Website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

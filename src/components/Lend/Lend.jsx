@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { CallerFn } from "../../apis/factory"
+import { unitsToUsdt, usdtToUnits, weiToEth } from "../../util/units"
 
 const TEMP = [
     {
@@ -22,10 +24,27 @@ const TEMP = [
 ]
 const Lend = () => {
     const [selectedBorrower, setSelectedBorrower] = useState(null)
+    const [allLoans, setAllLoans] = useState([])
 
     const onConfirmLendClickHandler = () => {
         
     }
+
+    const fetchLendRequests = () => {
+        CallerFn('getLoans', true)
+        .then((response) => {
+            setAllLoans(response)
+            console.log(unitsToUsdt(response[0].loanAmount))
+            console.log(weiToEth(response[0].collateralAmount))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        fetchLendRequests()
+    }, [])
 
     return (
         <form className="flex flex-col gap-y-[30px] w-[100%] h-[100%] text-white p-[20px] px-[30px] text-inter">
@@ -36,7 +55,7 @@ const Lend = () => {
                     Borrowers List
                 </div>
             {
-                TEMP.map((data, index) => {
+                allLoans.map((data, index) => {
                     return (
                         <div className="flex flex-col  gap-y-[20px] font-inter">
                             <div className="flex flex-row gap-x-[20px]">
@@ -46,14 +65,14 @@ const Lend = () => {
                                 
                                 <div className="flex flex-col gap-y-[5px]">
                                     <div className="flex flex-row items-center">
-                                        {data.amount}
+                                        {unitsToUsdt(data.loanAmount)}
                                         <img className="w-[20px] h-[20px] rounded-full ml-[5px]" src="./assets/usdc.svg" alt="usdcLogo"/>
                                     </div>
-                                    <div className="text-gray-200 text-[10px] font-medium">{data.address}</div>
-                                    <div className="text-[14px]">{data.repay} days</div>
+                                    <div className="text-gray-200 text-[10px] font-medium">{data.borrower}</div>
+                                    <div className="text-[14px]">{data.repayDays} days</div>
                                     <div className="flex flex-row items-center text-[14px]">
                                         <div>Collateral amount: </div>
-                                        &nbsp;{data.collateralAmt}
+                                        &nbsp;{weiToEth(data.collateralAmount)}
                                         <div className="flex justify-center w-[20px] h-[20px] rounded-full bg-white p-[4px] box-border ml-[5px]">
                                             <img src="./assets/matic.svg" alt="maticLogo"/>
                                         </div>
@@ -69,7 +88,7 @@ const Lend = () => {
                                 </button>
                             </div>
                             {
-                                index < TEMP.length-1 &&
+                                index < allLoans.length-1 &&
                                 <div className="h-[0.5px] self-center bg-gray-100 w-[100%] "></div>}
                         </div>
                     )
@@ -92,7 +111,7 @@ const Lend = () => {
                             Loan amount:
                         </div>
 
-                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none">{selectedBorrower.amount}</div>
+                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none">{unitsToUsdt(selectedBorrower.loanAmount)}</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[25px] bg-[#404557]">
                             <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                             USDT
@@ -101,7 +120,7 @@ const Lend = () => {
 
                     <div className="flex flex-row items-center">
                         <div className="font-inter text-[16px] font-medium">Expected repay duration:</div>
-                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none">{selectedBorrower.repay}</div>
+                        <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none">{selectedBorrower.repayDays}</div>
                         <div>days</div>
                     </div>
 
@@ -116,7 +135,9 @@ const Lend = () => {
                     <div className="flex flex-row items-center">
                         
                         <div className="font-inter text-[16px] font-medium">Interest Amount:</div>
-                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
+                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">
+                            {unitsToUsdt(selectedBorrower.loanAmount*(0.1*selectedBorrower.repayDays)/100)}
+                        </div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                                 <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                             USDT
@@ -127,7 +148,7 @@ const Lend = () => {
                     <div className="flex flex-row items-center">
                         
                         <div className="font-inter text-[16px] font-medium">Required collateral:</div>
-                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
+                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{weiToEth(selectedBorrower.collateralAmount)}</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                             <div className="flex justify-center w-[30px] h-[30px] rounded-full bg-white p-[4px] box-border">
                                 <img src="./assets/matic.svg" alt="maticLogo"/>

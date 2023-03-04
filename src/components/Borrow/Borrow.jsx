@@ -57,7 +57,7 @@ const Borrow = () => {
 
                 <input value={loanAmount} onChange={(e) => setLoanAmount(e?.target.value)} name="loanAmount" className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none" placeholder="0.00" />
                 <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[25px] bg-[#404557]">
-                        <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
+                    <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                     USDT
                 </div>
             </div>

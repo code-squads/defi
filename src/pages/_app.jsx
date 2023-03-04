@@ -9,6 +9,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Navbar from "../components/Navbar/Navbar";
 
 export default function App({ Component, pageProps }) {
   const { push } = useRouter();
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navbar />
       <Component {...pageProps} />
       <ToastContainer />
     </>

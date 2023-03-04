@@ -10,7 +10,8 @@ export function CallerFn(method, debug, ...params){
         }
         resolve(res);
       }).catch((err) => {
-          console.log(`Some error calling ${method} with params \n`, params, err);
+          if(debug)
+            console.log(`Some error calling ${method} with params \n`, params, err);
           reject(new Error(`Couldn't fetch results for ${method}`));
       });
   });
@@ -18,7 +19,7 @@ export function CallerFn(method, debug, ...params){
 
 export function SenderFn(method, senderAddress, debug, ...params){
   return new Promise((resolve, reject) => {
-    const tx = Contract.methods.addPost(...params);
+    const tx = Contract.methods[method](...params);
     if(debug)
       console.log("Prepared transaction: ", tx);
 

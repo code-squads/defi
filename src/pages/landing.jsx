@@ -4,7 +4,7 @@ import Details from "../components/Details";
 
 export default function App() {
   return (
-    <div className="bg-black">
+    <div>
       <Background />
       <Details />
     </div>

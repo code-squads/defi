@@ -1,4 +1,3 @@
-import Spline from "@splinetool/react-spline";
 import Background from "../components/Background";
 import Details from "../components/Details";
 

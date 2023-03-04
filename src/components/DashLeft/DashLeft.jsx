@@ -9,8 +9,7 @@ import { Container } from "@mui/material";
 import { useMetamaskAuth } from "../../auth/authConfig";
 import Loader from "../Loader/Loader";
 import { getUsdtBalance, getMaticBalance } from "../../apis/balances";
-const https = require("https");
-
+import { borrowRequest } from "../../apis/lending";
 
 const randPriceFluctuations = range => Number((Math.random() * (range*2 + 1)-range).toFixed(2));
 

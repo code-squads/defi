@@ -44,6 +44,7 @@ contract Defi {
         uint256 collateralAmount;
         bool loanApproved;
         bool loanRepayed;
+        bool loanSquaredOff;
     }
 
     Loan[] public loans;
@@ -67,7 +68,6 @@ contract Defi {
         require(msg.value > 0, "Collateral amount must be greater than zero");
 
         // Transfer Ethereum collateral from borrower to the contract occurs by default by payable
-
         uint256 loanId = loans.length;
         loans.push(Loan({
             loanId: loanId,
@@ -79,17 +79,18 @@ contract Defi {
             payableDeadline: 0,
             collateralAmount: msg.value,
             loanApproved: false,
-            loanRepayed: false
+            loanRepayed: false,
+            loanSquaredOff: false
         }));
     }
 
-    function getLoan(uint256 _loadId) public view returns (Loan memory) {
-        require(_loadId < loans.length, "Out of bound !");
-        return loans[_loadId];
+    function getLoan(uint256 _loanId) public view returns (Loan memory) {
+        require(_loanId < loans.length, "Out of bound !");
+        return loans[_loanId];
     }
-    function isLoanRepayed(uint256 _loadId) public view returns (bool) {
-        require(_loadId < loans.length, "Out of bound !");
-        return loans[_loadId].loanRepayed;
+    function isLoanRepayed(uint256 _loanId) public view returns (bool) {
+        require(_loanId < loans.length, "Out of bound !");
+        return loans[_loanId].loanRepayed;
     }
 
     function approveLoan(uint256 _loanId) external {
@@ -124,7 +125,27 @@ contract Defi {
         return interest;
     }
 
+    function squareOff(uint256 _loanId) external returns(bool){
+        require(loans[_loanId].loanRepayed != true, "Loan already repayed");
+        require(loans[_loanId].loanApproved == true, "Loan not approved");
+        require(loans[_loanId].payableDeadline < block.timestamp, "Payable deadline not reached yet");
+        require(loans[_loanId].lender == msg.sender, "Only lender can squareoff");
+
+        // Transfer collateral to lender
+        payable(msg.sender).transfer(loans[_loanId].collateralAmount);
+
+        loans[_loanId].loanRepayed = true;
+        loans[_loanId].loanSquaredOff = true;
+
+        // Clear loan data
+        // delete loans[_loanId];
+
+        emit LoanRepaid(_loanId);
+        return true;
+    }
+
     function payLoan(uint256 _loanId) external {
+        require(loans[_loanId].loanRepayed != true, "Loan already repayed");
         require(loans[_loanId].loanApproved == true, "Loan not approved");
         require(loans[_loanId].borrower == msg.sender, "Only borrower can repay loan");
 
@@ -137,7 +158,7 @@ contract Defi {
         // Transfer USDT from borrower to lender
         require(usdt.transferFrom(msg.sender, loans[_loanId].lender, repayAmount), "Failed to repay usdt");
 
-        // Transfer Ethereum collateral back to borrower
+        // Transfer collateral back to borrower
         payable(loans[_loanId].borrower).transfer(loans[_loanId].collateralAmount);
 
         loans[_loanId].loanRepayed = true;

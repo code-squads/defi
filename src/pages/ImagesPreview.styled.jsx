@@ -2,8 +2,8 @@ import Image from "next/image";
 import styled from "styled-components";
 
 //Four main values
-const WIDTH =  "620px"
-const HEIGHT = "300px"
+const WIDTH =  "420px"
+const HEIGHT = "200px"
 const COLUMN_GAP = "4%"
 const ROW_GAP = "20px"
 

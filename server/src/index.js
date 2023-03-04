@@ -2,9 +2,7 @@ const express = require("express");
 const slashes = require("connect-slashes");
 const cors = require("cors");
 const mongoose = require("mongoose");
-
 const { sendOTP, verifyOTP } = require("../apis/smsAPI");
-
 
 const PORT = process.argv[2] || process.env.PORT || 5000;
 const CODE_LENGTH = process.env.CODE_LENGTH;
@@ -61,7 +59,6 @@ app.post("/apis/sendOTP", (req, res) => {
         message: "Server error, contact administrator",
         phone,
         success: false,
-        error,
       });
     });
 });

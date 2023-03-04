@@ -106,9 +106,9 @@ const DashLeft = () => {
               {/* <span className="m-2">MATIC</span> */}
             </div>
             <div>
-              <div style={{ color: "#696c80" }}>Price</div>
+              <div className="text-right mr-[15px]" style={{ color: "#696c80" }}>Price</div>
               <div>
-                { maticVal.rate.toFixed(2) }
+                ${ maticVal.rate.toFixed(2) }
               </div>
             </div>
           </div>
@@ -135,11 +135,11 @@ const DashLeft = () => {
             <div>
               <div>Price</div>
               <div>
-                { usdVal.rate.toFixed(2) }
+                ${ usdVal.rate.toFixed(2) }
               </div>
             </div>
           </div>
-          <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div>
+          <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x466DD1e48570FAA2E7f69B75139813e4F8EF75c2</div>
         </div>
       </Container>
 
@@ -177,9 +177,7 @@ const DashLeft = () => {
             <div>
               <div style={{ color: "#696c80" }}>Price</div>
               <div>
-                {maticVal.rate !== undefined
-                  ? maticVal.rate
-                  : Math.round(dummyMatic).toFixed(2)}
+              { maticBalance.toFixed(4) } (${ (maticVal.rate * maticBalance).toFixed(2) })
               </div>
             </div>
           </div>
@@ -199,16 +197,14 @@ const DashLeft = () => {
               /> */}
               <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                   <img className="w-[40px] h-[40px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
-                  USDC
+                  USDT
               </div>
               {/* <span className="m-2">MATIC</span> */}
             </div>
             <div>
               <div>Price</div>
               <div>
-                {usdVal.rate !== undefined
-                  ? usdVal.rate
-                  : Math.round(dummyMatic).toFixed(2)}
+              { usdtBalance.toFixed(2) } (${ (usdVal.rate * usdtBalance).toFixed(2) })
               </div>
             </div>
           </div>

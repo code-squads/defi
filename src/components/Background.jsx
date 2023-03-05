@@ -26,8 +26,6 @@ const Background = () => {
               2000,
               "Make the most of your USDT",
               2000,
-              "Make the most of your Chinchillas",
-              2000,
             ]}
             speed={50} // Custom Speed from 1-99 - Default Speed: 40
             style={{ fontSize: "2em" }}

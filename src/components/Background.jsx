@@ -27,7 +27,7 @@ const Background = () => {
           <Image
             src={BorrowSs}
             alt=""
-            className="absolute h-96 w-auto top-[65%] left-[35%] drop-shadow-[0_35px_35px_rgba(54,45,101,0.7)] rounded-lg overflow-hidden z-[1]"
+            className="absolute h-96 w-auto top-[65%] left-[20%] drop-shadow-[0_35px_35px_rgba(54,45,101,0.7)] rounded-lg overflow-hidden z-[1]"
           />
         </div>
       </div>

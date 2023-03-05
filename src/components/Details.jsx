@@ -1,8 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import matic from "../assets/matic.png";
-import usdc from "../assets/usdc.png";
-import ethLogo from "../assets/ethLogo.png";
 
 const Details = () => {
   return (
@@ -28,9 +25,11 @@ const Details = () => {
           <div className="text-center max-w-[33.33%] bg-[#000000] m-2 p-10 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
             <div className="w-[4rem] border- h-[4rem] inline-block relative ">
               <Image
-                src={usdc}
+                src='/assets/usdc.png'
                 alt="nft"
-                className="flex w-[50px] h-[50px] rounded-xl justify-center align-middle"
+                width="50"
+                height="50"
+                className="flex ounded-xl justify-center align-middle"
               />
             </div>
             <div
@@ -49,9 +48,11 @@ const Details = () => {
           <div className="text-center p-10 max-w-[33.33%] bg-[#000000] m-2 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
             <div className="w-[4rem] border- h-[4rem] inline-block relative ">
               <Image
-                src={ethLogo}
+                src='/assets/ethLogo.png'
                 alt="nft"
-                className="flex w-[50px] h-[50px] rounded-xl justify-center align-middle"
+                width="50"
+                height="50"
+                className="flex ounded-xl justify-center align-middle"
               />
             </div>
             <div
@@ -69,9 +70,11 @@ const Details = () => {
           <div className="text-center max-w-[33.33%] m-2 p-10 bg-[#000000] drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
             <div className="w-[4rem] border- h-[4rem] inline-block relative ">
               <Image
-                src={matic}
+                src='/assets/matic.png'
                 alt="nft"
-                className="flex w-[50px] h-[50px] rounded-xl justify-center align-middle"
+                width="50"
+                height="50"
+                className="flex rounded-xl justify-center align-middle"
               />
             </div>
             <div

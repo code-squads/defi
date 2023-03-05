@@ -1,8 +1,6 @@
 import React from "react";
 import Spline from "@splinetool/react-spline";
-import LendingSs from "../assets/lendingSs.jpeg";
-import Image from "next/Image";
-import BorrowSs from "../assets/borrowSs.jpeg";
+import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 
 const Background = () => {
@@ -35,14 +33,18 @@ const Background = () => {
           />
         </div>
         <div className="z-[2] w-1/2 flex-1 m-16 mr-0 relative overflow-x-clip">
-          <Image
-            src={LendingSs}
+          <img
+            src='/assets/LandingSs.jpeg'
             alt="gg"
+            // width="50"
+            // height="50"
             className=" h-5/6 w-5/6  opacity-75 drop-shadow-xl rounded-lg"
           />
-          <Image
-            src={BorrowSs}
+          <img
+            src='/assets/BorrowSs.jpeg'
             alt=""
+            // width="50"
+            // height="50"
             className="absolute h-5/6 w-5/6 top-[50%] ml-[-35%] right-[35%] opacity-80 drop-shadow-xl rounded-lg overflow-hidden z-[-1]"
           />
         </div>

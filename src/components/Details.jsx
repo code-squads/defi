@@ -8,8 +8,8 @@ const Details = () => {
       <div className="">
         <div className="text-center flex mb-[1.5rem] flex-col justify-center align-middle">
           <div
-            className="text-6xl text-[52px] mb-6 max-w-[1120px]"
-            style={{ color: "rgb(191, 191, 191)" }}
+            className=" text-[52px] mb-6 max-w-[1120px] font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-[#362DB5] to-[#A047B0]"
+            // style={{ color: "rgba(54,45,101,0.7)" }}
           >
             {" "}
             The leading non-custodial fixed yield rate protocol{" "}
@@ -23,8 +23,8 @@ const Details = () => {
           </div>
         </div>
         <div className="w-full flex">
-          <div className="text-center flex-[0 0 33.33%] max-w-[33.33%]">
-            <div className="w-[4rem] border- h-[4rem] inline-block relative shadow-xl shadow-cyan-500/50">
+          <div className="text-center flex-[0 0 33.33%] max-w-[33.33%] bg-[#000000] m-6 p-10 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
+            <div className="w-[4rem] border- h-[4rem] inline-block relative ">
               <Image src={nft} alt="nft" className="flex justify-center align-middle" />
             </div>
             <div
@@ -39,8 +39,8 @@ const Details = () => {
               Sint sit veniam facilis quisquam dolores.
             </div>
           </div>
-          <div className="text-center flex-[0 0 33.33%] max-w-[33.33%]">
-            <div className="w-[4rem] border- h-[4rem] inline-block relative shadow-xl shadow-cyan-500/50">
+          <div className="text-center p-10 flex-[0 0 33.33%] max-w-[33.33%] bg-[#000000] m-6 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
+            <div className="w-[4rem] border- h-[4rem] inline-block relative ">
               <Image src={nft} alt="nft" className="flex justify-center align-middle" />
             </div>
             <div
@@ -55,8 +55,8 @@ const Details = () => {
               Sint sit veniam facilis quisquam dolores.
             </div>
           </div>
-          <div className="text-center flex-[0 0 33.33%] max-w-[33.33%]">
-            <div className="w-[4rem] border- h-[4rem] inline-block relative shadow-xl shadow-cyan-500/50">
+          <div className="text-center flex-[0 0 33.33%] max-w-[33.33%] m-6 p-10 bg-[#000000] drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
+            <div className="w-[4rem] border- h-[4rem] inline-block relative ">
               <Image src={nft} alt="nft" className="flex justify-center align-middle" />
             </div>
             <div

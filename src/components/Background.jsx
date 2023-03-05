@@ -18,6 +18,7 @@ const Background = () => {
       <div className="flex flex-row items-center ">
         <div className="z-[2] w-[80px] flex-1 m-16 relative font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-[#362DB5] to-[#A047B0]">
           <TypeAnimation
+            className="text-lexend font-medium"
             // Same String at the start will only be typed once, initially
             sequence={[
               "Make the most of your MATIC",

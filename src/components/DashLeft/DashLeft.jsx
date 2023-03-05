@@ -175,7 +175,7 @@ const DashLeft = () => {
               {/* <span className="m-2">ETH</span> */}
             </div>
             <div>
-              <div style={{ color: "#696c80" }}>Price</div>
+              <div style={{ color: "#696c80" }}>Value</div>
               <div>
               { maticBalance.toFixed(4) } (${ (maticVal.rate * maticBalance).toFixed(2) })
               </div>
@@ -202,7 +202,7 @@ const DashLeft = () => {
               {/* <span className="m-2">ETH</span> */}
             </div>
             <div>
-              <div>Price</div>
+              <div>Value</div>
               <div>
               { usdtBalance.toFixed(2) } (${ (usdVal.rate * usdtBalance).toFixed(2) })
               </div>

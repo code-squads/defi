@@ -54,7 +54,7 @@ const DashLeft = () => {
   }, [profile]);
 
   if(!isLoggedIn || isProcessingLogin || !profile)
-    return <Loader size="80px" />
+    return <></>
   
   return (
     <div className="w-[100%] h-[100%] font-inter overflow-auto" style={{backgroundColor : '#12131A'}}>

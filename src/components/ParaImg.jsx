@@ -55,14 +55,13 @@ const ParaImg = () => {
                   className="text-[2.2rem] font-medium"
                   style={{ color: "white", marginLeft: "2rem" }}
                 >
-                  Competitive Returns
+                  Peer-to-Peer
                 </div>
                 <p
                   className="text-[1.4rem]"
                   style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
-                  Take advantage of some of the highest and most consistent
-                  returns in DeFi on a growing range of assets
+                  Borrow and Lend amongst the blockchain end users at global level.
                 </p>
               </div>
             </Container>
@@ -98,14 +97,13 @@ const ParaImg = () => {
                   className="text-[2.2rem] font-medium"
                   style={{ color: "white", marginLeft: "2rem" }}
                 >
-                  Competitive Returns
+                  Riskless transactions
                 </div>
                 <p
                   className="text-[1.4rem]"
                   style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
-                  Take advantage of some of the highest and most consistent
-                  returns in DeFi on a growing range of assets
+                  Share the tokens with the requested user with voluntarily handling the return after the repay duration.
                 </p>
               </div>
               <div>
@@ -137,14 +135,13 @@ const ParaImg = () => {
                     className="text-[2.2rem] font-medium"
                     style={{ color: "white", marginLeft: "2rem" }}
                   >
-                    Competitive Returns
+                    Collateralized Transaction
                   </div>
                   <p
                     className="text-[1.4rem]"
                     style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                   >
-                    Take advantage of some of the highest and most consistent
-                    returns in DeFi on a growing range of assets
+                    Every borrower must be aware of the loan duration and the rights which the lender has with this collateralized platform.
                   </p>
                 </div>
               </div>

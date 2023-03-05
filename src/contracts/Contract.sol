@@ -97,6 +97,16 @@ contract Defi {
         return loans[_loanId].loanRepayed;
     }
 
+    function cancelLoanRequest(uint256 _loanId) public {
+        require(loans[_loanId].borrower == msg.sender, "Only borrower can cancel loan request");
+        require(loans[_loanId].borrower != address(0), "Loan does not exist");
+        require(loans[_loanId].lender == address(0), "Loan already approved");
+        require(!loans[_loanId].loanRepayed, "Loan already repayed");
+        // Transfer collateral back to borrower
+        payable(msg.sender).transfer(loans[_loanId].collateralAmount);
+        loans[_loanId].loanRepayed = true;
+    }
+
     function approveLoan(uint256 _loanId) external {
         address _lender = msg.sender;
 
@@ -104,6 +114,9 @@ contract Defi {
         require(loans[_loanId].lender == address(0), "Loan already approved");
         require(msg.sender != loans[_loanId].borrower, "Borrower can't approve self loan");
 
+        // usdt.approve(address(this), loans[_loanId].loanAmount);
+
+        // require(usdt.transfer(loans[_loanId].borrower, loans[_loanId].loanAmount), "Failed to transfer usdt");
         require(usdt.transferFrom(msg.sender, loans[_loanId].borrower, loans[_loanId].loanAmount), "Failed to transfer usdt");
         
         // Set loan data
@@ -159,8 +172,11 @@ contract Defi {
         uint256 interest = getInterestTillDate(_loanId);
         uint256 repayAmount = loans[_loanId].loanAmount + interest;
         
+        // usdt.approve(address(this), repayAmount);
+
         // Transfer USDT from borrower to lender
         require(usdt.transferFrom(msg.sender, loans[_loanId].lender, repayAmount), "Failed to repay usdt");
+        // require(usdt.transfer(loans[_loanId].lender, repayAmount), "Failed to repay usdt");
 
         // Transfer collateral back to borrower
         payable(loans[_loanId].borrower).transfer(loans[_loanId].collateralAmount);

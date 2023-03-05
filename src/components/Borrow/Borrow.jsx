@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react"
+import { toast } from "react-toastify";
+import { borrowRequest } from "../../apis/lending"
 import { useMetamaskAuth } from "../../auth/authConfig"
+
+function collateralCalculator(loanAmount, repayDays){
+    return (parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639 + 0.005;
+}
 
 const Borrow = () => {
     // const [eligible, setEligible] = useState(true)
@@ -13,26 +19,44 @@ const Borrow = () => {
 
 
     const onConfirmBorrowClickHandler = (e) => {
+        if(!profile)
+            return;
         e.preventDefault()
-        console.log(e.target.loanAmount.value)
 
         const totalRepayInUSDC = e.target.loanAmount.value + (e.target.loanAmount.value*(0.0356 * e.target.repayDays.value)/100)
         const requiredCollateralInUSDT = totalRepayInUSDC + totalRepayInUSDC * 150/100
 
         console.log(totalRepayInUSDC, requiredCollateralInUSDT)
 
-        loans.push(Loan({
-            // loanId: loanId,
-            // borrower: msg.sender,
-            // lender: address(0),
-            loanAmount: e.target.loanAmount.value,
-            repayDays: e.target.repayDays.value,
-            // loanGrantedTime: 0,
-            // payableDeadline: 0,
-            // collateralAmount: msg.value,
-            // loanApproved: false,
-            // loanRepayed: false
-        }));
+        console.log("Borrow with fields", {
+            address: profile.address,
+            eth: collateralCalculator(loanAmount, repayDays),
+            loanAmount,
+            repayDays
+        });
+        borrowRequest(
+            profile.address,
+            collateralCalculator(loanAmount, repayDays),
+            loanAmount,
+            repayDays
+        ).then(() => {
+            toast.success("Borrow request is successfuly registered", { autoClose: 900 });
+            setTimeout(() => window.location.reload(), 1000);
+        }).catch(err => {
+            toast.error("Metamask request rejected");
+        })
+        // loans.push(Loan({
+        //     // loanId: loanId,
+        //     // borrower: msg.sender,
+        //     // lender: address(0),
+        //     loanAmount: Number(e.target.loanAmount.value),
+        //     repayDays: Number(e.target.repayDays.value),
+        //     // loanGrantedTime: 0,
+        //     // payableDeadline: 0,
+        //     // collateralAmount: msg.value,
+        //     // loanApproved: false,
+        //     // loanRepayed: false
+        // }));
     }
 
     useEffect(() => {
@@ -43,10 +67,10 @@ const Borrow = () => {
           .then(setUsdtBalance);
       }, [profile]);
 
-    console.log(loanAmount, loanAmount, repayDays)
-    console.log("interest"+( (parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639))
+    // console.log(loanAmount, loanAmount, repayDays)
+    // console.log("interest"+( (parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639))
 
-    const eligible =  maticBalance > ((parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639)
+    const eligible =  maticBalance > collateralCalculator(loanAmount, repayDays);
 
     return (
         <form className="flex flex-col gap-y-[30px] w-[100%] h-[100%] text-white p-[20px] px-[30px] text-inter" onSubmit={onConfirmBorrowClickHandler}>
@@ -93,9 +117,8 @@ const Borrow = () => {
                 
                 <div className="font-inter text-[16px] font-medium">Required collateral:</div>
                 <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">
-                    { loanAmount ?
-                    ((parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639).toFixed(4)
-                    : 0
+                    {
+                        loanAmount ? collateralCalculator(loanAmount, repayDays).toFixed(4) : 0
                     }
                 </div>
                 <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">

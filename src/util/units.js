@@ -29,3 +29,10 @@ export const dateToUnits = date => {
 }
 
 export const currDateToUnits = () => dateToUnits(new Date());
+
+export const interestCalculator = (loanAmount, loanGrantedTime) => {
+  const interactionBuffer = 100;
+  const timeDiff = parseInt((new Date())/1000 + interactionBuffer - loanGrantedTime);
+  const interest = (parseInt(loanAmount)*(10*timeDiff)/1000000);
+  return Number(interest);
+}

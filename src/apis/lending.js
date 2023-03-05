@@ -1,7 +1,7 @@
 import { hasWindow } from "../util/next-utils";
 import { ethToWei, usdtToUnits } from "../util/units";
-import { CallerFn } from "./factory";
-
+import { linkFromTxHash } from "./Contract";
+import { CallerFn, SenderFn } from "./factory";
 
 export function PayableSenderFn(method, senderAddress, debug, payableAmountWei, ...params){
   return new Promise((resolve, reject) => {
@@ -30,21 +30,46 @@ export function PayableSenderFn(method, senderAddress, debug, payableAmountWei, 
   });
 }
 
-export const borrowRequest = (address, payableAmountWei, usdtLoanAmount, repayDays) => {
+export const borrowRequest = (address, payableAmountEth, usdtLoanAmount, repayDays) => {
   if(!address)
     return console.log("Address invalid");
   if(!usdtLoanAmount)
     return console.log("Loan amount invalid");
   if(!repayDays)
     return console.log("Repay days invalid");
-  return PayableSenderFn('createLoan', address, true, payableAmountWei, usdtToUnits(usdtLoanAmount), repayDays);
+  return PayableSenderFn('createLoan', address, true, ethToWei(payableAmountEth), usdtToUnits(usdtLoanAmount), repayDays);
+}
+
+export const approveRequest = (address, loanId) => {
+  if(!address)
+    return console.log("Address invalid");
+  return SenderFn('approveLoan', address, true, loanId);
+}
+
+export const payLoan = (address, loanId) => {
+  if(!address)
+    return console.log("Address invalid");
+  return SenderFn('payLoan', address, true, loanId);
+}
+
+export const squareOff = (address, loanId) => {
+  if(!address)
+    return console.log("Address invalid");
+  return SenderFn('squareOff', address, true, loanId);
+}
+
+export const getInterestTillDate = loanId => {
+  return CallerFn('getInterestTillDate', true, loanId);
 }
 
 if(hasWindow()){
-  window.borrowRequest = () => borrowRequest(
-    '0xabd8EeD5b630578F72eEB06c637dB7179576A811',
-    ethToWei(0.3),
-    25,
-    3
-  ); 
+  window.approveRequest = approveRequest;
+  window.squareOff = squareOff;
+  // window.squareOff = ();
+  // window.borrowRequest = () => borrowRequest(
+  //   '0xabd8EeD5b630578F72eEB06c637dB7179576A811',
+  //   0.021,
+  //   25,
+  //   3
+  // ); 
 }

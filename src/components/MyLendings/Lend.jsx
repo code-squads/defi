@@ -1,45 +1,38 @@
 import moment from "moment"
 import { useEffect, useState } from "react"
+import { UsdtContract } from "../../apis/Contract"
 import { CallerFn } from "../../apis/factory"
+import { squareOff } from "../../apis/lending"
 import { useMetamaskAuth } from "../../auth/authConfig"
-import { storedTimeStampToDate, unitsToUsdt, weiToEth } from "../../util/units"
+import { contractAddress } from "../../contracts/deploymentDetails"
+import { interestCalculator, storedTimeStampToDate, unitsToUsdt, weiToEth } from "../../util/units"
 
-const TEMP = [
-    {
-        amount: '5000.00',
-        address: '0x65e0D3DB067222AfE5FAD1Ff60ebF29bE4cF6207',
-        repay: '10',
-        collateralAmt: '5000'
-    },
-    {
-        amount: '2300.00',
-        address: '0x65e0D3DB067222AfE5FAD1Ff60ebF29bE4cF6207',
-        repay: '10',
-        collateralAmt: '5000'
-    },
-    {
-        amount: '450.00',
-        address: '0x65e0D3DB067222AfE5FAD1Ff60ebF29bE4cF6207',
-        repay: '10',
-        collateralAmt: '5000'
-    }
-]
+
 const MyBorrowings = () => {
     const [selectedBorrower, setselectedBorrower] = useState(null)
     const [myLendings, setMyLendings] = useState([])
     const { profile } = useMetamaskAuth();
 
-    const onConfirmLendClickHandler = () => {
-        
+    const squareOffHandler = (loan) => {
+        if(!profile)    return;
+        const { loanId } = loan;
+        squareOff(profile.address, loanId)
+        .then(() => {
+            toast.success("Squared off successfuly", { autoClose: 900 });
+            setTimeout(() => window.location.reload(), 1000);
+        })
+        .catch((error) => {
+            console.error('Token approval failed:', error);
+        });
     }
 
     const fetchMyLendings = () => {
         CallerFn('getLoans', true)
         .then((response) => {
             console.log(response)
-            // const newRespone = response.filter(data => data.lender == profile.address)
-            // console.log(newRespone)
-            setMyLendings(response)
+            const newRespone = response.filter(data => data.lender == profile.address)
+            console.log("my lendings", newRespone)
+            setMyLendings(newRespone)
         })
         .catch((error) => {
             console.log(error)
@@ -49,10 +42,6 @@ const MyBorrowings = () => {
     const onRepayClickHandler = (loanId) => {
         console.log(loanId)
     }
-
-    // function collateralCalculator(loanAmount, repayDays){
-    //     return (parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639 + 0.005;
-    // }
 
     useEffect(() => {
         fetchMyLendings()
@@ -75,7 +64,7 @@ const MyBorrowings = () => {
                     const daysRemaining = startDate.diff(endDate, 'days')
                     console.log(new Date(daysRemaining))
                     return (
-                        <div className="flex flex-col  gap-y-[20px] font-inter">
+                        <div className="flex flex-col  gap-y-[20px] font-inter" key={data.loanId}>
                             <div className="flex flex-row gap-x-[20px]">
                                 <div className="">
                                 {index+1}.
@@ -96,23 +85,26 @@ const MyBorrowings = () => {
                                     }
                                     <div className="flex flex-row items-center text-[14px]">
                                         <div>Collateral amount: </div>
-                                        &nbsp;{weiToEth(data.collateralAmount)}
+                                        &nbsp;{weiToEth(data.collateralAmount).toFixed(4)}
                                         <div className="flex justify-center w-[20px] h-[20px] rounded-full bg-white p-[4px] box-border ml-[5px]">
                                             <img src="./assets/matic.svg" alt="maticLogo"/>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button
-                                    type="submit"
-                                    // className="bg-blue py-[8px] px-[24px] ml-auto rounded-lg text-white font-inter font-medium self-start"
-                                    className={`bg-blue py-[8px] px-[24px] ml-auto rounded-lg text-white self-start font-inter font-medium ${daysRemaining < 1 && "opacity-50 cursor-not-allowed"}`}
-                                    onClick={() => {setselectedBorrower(data)}}
-                                    disabled={daysRemaining<1}
-                                >
-                                    {/* Know More */}
-                                    Square off
-                                </button>
+                                {
+                                    !data.loanRepayed &&
+                                    <button
+                                        type="submit"
+                                        // className="bg-blue py-[8px] px-[24px] ml-auto rounded-lg text-white font-inter font-medium self-start"
+                                        className={`bg-blue py-[8px] px-[24px] ml-auto rounded-lg text-white self-start font-inter font-medium ${daysRemaining > 0 && "opacity-50 cursor-not-allowed"}`}
+                                        onClick={() => {setselectedBorrower(data)}}
+                                        disabled={daysRemaining>0}
+                                    >
+                                        {/* Know More */}
+                                        Square off
+                                    </button>
+                                }
                             </div>
                             {
                                 index < myLendings.length-1 &&
@@ -165,7 +157,9 @@ const MyBorrowings = () => {
                     <div className="flex flex-row items-center">
                         
                         <div className="font-inter text-[16px] font-medium">Interest Amount:</div>
-                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{unitsToUsdt(selectedBorrower.loanAmount*(0.1*selectedBorrower.repayDays)/100)}</div>
+                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">
+                            { unitsToUsdt(interestCalculator(selectedBorrower.loanAmount, selectedBorrower.loanGrantedTime)).toFixed(2) }
+                        </div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                                 <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                             USDT
@@ -176,7 +170,9 @@ const MyBorrowings = () => {
                     <div className="flex flex-row items-center">
                         
                         <div className="font-inter text-[16px] font-medium">Total Amount to be received:</div>
-                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{unitsToUsdt(parseInt(selectedBorrower.loanAmount) + parseInt(selectedBorrower.loanAmount*(0.1*selectedBorrower.repayDays)/100)).toFixed(4)}</div>
+                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">
+                            { unitsToUsdt(parseInt(selectedBorrower.loanAmount) + interestCalculator    (selectedBorrower.loanAmount, selectedBorrower.loanGrantedTime)).toFixed(2) }
+                        </div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                                 <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                             USDT
@@ -187,7 +183,7 @@ const MyBorrowings = () => {
                     <div className="flex flex-row items-center">
                         
                         <div className="font-inter text-[16px] font-medium">Collateral you can square off:</div>
-                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{weiToEth(selectedBorrower.collateralAmount)}</div>
+                        <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{weiToEth(selectedBorrower.collateralAmount).toFixed(4)}</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                             <div className="flex justify-center w-[30px] h-[30px] rounded-full bg-white p-[4px] box-border">
                                 <img src="./assets/matic.svg" alt="maticLogo"/>
@@ -200,6 +196,7 @@ const MyBorrowings = () => {
                         type="submit"
                         className="bg-blue py-[8px] px-[24px] rounded-lg text-white justify-center self-center font-inter font-medium"
                         // className={`bg-blue py-[8px] px-[24px] rounded-lg text-white justify-center self-center font-inter font-medium ${!eligible && "opacity-50 cursor-not-allowed"}`}
+                        onClick={() => squareOffHandler(selectedBorrower)}
                     >
                         Square Off Now
                     </button>

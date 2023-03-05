@@ -1,5 +1,5 @@
-export const contractDeploymentTx ="0x5da27672314356102e689d41930f02d223c7a9837c44c3b47e2108dd978368a5";
+export const contractDeploymentTx ="0x35beb3ef5e018044cf3cbd66772ac981ec31fa1aa7e7f79fb84f61c6f5af81fc";
 
-export const contractAddress = "0xc725Ff155bABb0B2F53d50BfF850f2FF53A760c4";
+export const contractAddress = "0xd8896C630Fd03E03Cd08597cFDdc0c56Fe66deeC";
 
 export const contractDeploymentTxLink = `https://mumbai.polygonscan.com/tx/${contractDeploymentTx}`;

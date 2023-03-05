@@ -42,8 +42,8 @@ const DashLeft = () => {
     //   .catch((error) => console.log("error", error))
   }, []);
 
-  console.log(maticVal);
-  console.log(usdVal);
+  // console.log(maticVal);
+  // console.log(usdVal);
 
   useEffect(() => {
     if(!profile)  return;

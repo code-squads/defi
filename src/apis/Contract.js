@@ -1,5 +1,6 @@
 import Web3 from 'web3';
 import ContractABI from '../contracts/ContractABI.json';
+import TokenABI from '../contracts/UsdtABI.json';
 import {
     contractAddress,
     contractDeploymentTx,
@@ -26,5 +27,7 @@ const Contract = new web3.eth.Contract(ContractABI, contractAddress);
 if(typeof window != 'undefined'){
     window.Contract = Contract;
 }
+
+export const UsdtContract = new web3.eth.Contract(TokenABI, '0X466DD1E48570FAA2E7F69B75139813E4F8EF75C2');
 
 export default Contract;

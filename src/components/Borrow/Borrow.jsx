@@ -1,30 +1,95 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify";
+import { borrowRequest } from "../../apis/lending"
+import { useMetamaskAuth } from "../../auth/authConfig"
+
+function collateralCalculator(loanAmount, repayDays){
+    return ((parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639 + 0.005) * 1.3;
+}
 
 const Borrow = () => {
-    const [eligible, setEligible] = useState(false)
+    // const [eligible, setEligible] = useState(true)
+    const [loanAmount, setLoanAmount] = useState(null)
+    const [repayDays, setRepayDays] = useState(1)
+    const [maticBalance, setMaticBalance] = useState(0);
+    const [usdtBalance, setUsdtBalance] = useState(0);
+    const { profile, isLoggedIn, isProcessingLogin } = useMetamaskAuth();
 
-    const onConfirmBorrowClickHandler = () => {
+    console.log(maticBalance)
 
+
+    const onConfirmBorrowClickHandler = (e) => {
+        if(!profile)
+            return;
+        e.preventDefault()
+
+        const totalRepayInUSDC = e.target.loanAmount.value + (e.target.loanAmount.value*(0.0356 * e.target.repayDays.value)/100)
+        const requiredCollateralInUSDT = totalRepayInUSDC + totalRepayInUSDC * 150/100
+
+        console.log(totalRepayInUSDC, requiredCollateralInUSDT)
+
+        console.log("Borrow with fields", {
+            address: profile.address,
+            eth: collateralCalculator(loanAmount, repayDays),
+            loanAmount,
+            repayDays
+        });
+        borrowRequest(
+            profile.address,
+            collateralCalculator(loanAmount, repayDays),
+            loanAmount,
+            repayDays
+        ).then(() => {
+            toast.success("Borrow request is successfuly registered", { autoClose: 900 });
+            setTimeout(() => window.location.reload(), 1000);
+        }).catch(err => {
+            toast.error("Metamask request rejected");
+        })
+        // loans.push(Loan({
+        //     // loanId: loanId,
+        //     // borrower: msg.sender,
+        //     // lender: address(0),
+        //     loanAmount: Number(e.target.loanAmount.value),
+        //     repayDays: Number(e.target.repayDays.value),
+        //     // loanGrantedTime: 0,
+        //     // payableDeadline: 0,
+        //     // collateralAmount: msg.value,
+        //     // loanApproved: false,
+        //     // loanRepayed: false
+        // }));
     }
-    
+
+    useEffect(() => {
+        if(!profile)  return;
+        getMaticBalance(profile.address)
+          .then(setMaticBalance);
+        getUsdtBalance(profile.address)
+          .then(setUsdtBalance);
+      }, [profile]);
+
+    // console.log(loanAmount, loanAmount, repayDays)
+    // console.log("interest"+( (parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639))
+
+    const eligible =  maticBalance > collateralCalculator(loanAmount, repayDays);
+
     return (
-        <div className="flex flex-col gap-y-[30px] w-[100%] h-[100%] text-white p-[20px] px-[30px] text-inter">
+        <form className="flex flex-col gap-y-[30px] w-[100%] h-[100%] text-white p-[20px] px-[30px] text-inter" onSubmit={onConfirmBorrowClickHandler}>
             <div className="flex flex-row items-center">
                 <div className="font-inter text-[16px] font-medium">
                     Loan amount:
                 </div>
 
-                <input className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none" placeholder="0.00" />
+                <input value={loanAmount} onChange={(e) => setLoanAmount(e?.target.value)} name="loanAmount" className="ml-auto bg-transparent text-right text-[#696c80] font-medium outline-none" placeholder="0.00" />
                 <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[25px] bg-[#404557]">
-                        <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
-                    USDC
+                    <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
+                    USDT
                 </div>
             </div>
 
             <div className="flex flex-row items-center">
                 
                 <div className="font-inter text-[16px] font-medium">Expected repay duration:</div>
-                <input className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none" placeholder="0" />
+                <input value={repayDays} onChange={(e) => setRepayDays(e?.target.value)} name="repayDays" className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none" placeholder="0" />
                 <div>days</div>
 
             </div>
@@ -32,7 +97,7 @@ const Borrow = () => {
             <div className="flex flex-row items-center">
                 
                 <div className="font-inter text-[16px] font-medium">Interest %:</div>
-                <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none">13%</div>
+                <div className="ml-auto bg-transparent text-right text-[#696c80] font-medium mr-[10px] outline-none">36%</div>
                 <div>APR</div>
 
             </div>
@@ -40,10 +105,10 @@ const Borrow = () => {
             <div className="flex flex-row items-center">
                 
                 <div className="font-inter text-[16px] font-medium">Interest Amount:</div>
-                <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
+                <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{(loanAmount*(0.1*repayDays)/100).toFixed(2)}</div>
                 <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
-                        <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
-                    USDC
+                    <img className="w-[30px] h-[30px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
+                    USDT
                 </div>
 
             </div>
@@ -51,18 +116,24 @@ const Borrow = () => {
             <div className="flex flex-row items-center">
                 
                 <div className="font-inter text-[16px] font-medium">Required collateral:</div>
-                <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">9999</div>
+                <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">
+                    {
+                        loanAmount ? collateralCalculator(loanAmount, repayDays).toFixed(4) : 0
+                    }
+                </div>
                 <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                     <div className="flex justify-center w-[30px] h-[30px] rounded-full bg-white p-[4px] box-border">
-                        <img src="./assets/matic.svg" alt="maticLogo"/>
+                        <img src="./assets/eth.png" alt="ethLogo"/>
                     </div>
-                    MATIC
+                    ETH
                 </div>
             </div>
 
-            {eligible && <div className="text-slate-300 text-center">
+            {eligible && 
+                <div className="text-slate-300 text-center">
                 Congratulations 🎉 you are eligible for borrowing
-            </div>}
+                </div>
+            }
 
             <button
                 type="submit"
@@ -78,7 +149,7 @@ const Borrow = () => {
                 </svg>
                 on conforming collateral amount will be deducted from your account
             </div>
-        </div>
+        </form>
     )
 }
 

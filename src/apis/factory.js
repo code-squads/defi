@@ -25,7 +25,7 @@ export function SenderFn(method, senderAddress, debug, ...params){
 
     tx
     .send({
-      from: senderAddress
+      from: senderAddress,
     })
     .then((receipt) => {
       console.log(`${method} - Tx Receipt`, receipt);

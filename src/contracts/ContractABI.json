@@ -91,6 +91,19 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_loanId",
+				"type": "uint256"
+			}
+		],
+		"name": "cancelLoanRequest",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_loanAmount",
 				"type": "uint256"
 			},
@@ -128,7 +141,7 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_loadId",
+				"name": "_loanId",
 				"type": "uint256"
 			}
 		],
@@ -185,11 +198,86 @@
 						"internalType": "bool",
 						"name": "loanRepayed",
 						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "loanSquaredOff",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct Defi.Loan",
 				"name": "",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getLoans",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "loanId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "borrower",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "lender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "loanAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "repayDays",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "loanGrantedTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payableDeadline",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "collateralAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "loanApproved",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "loanRepayed",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "loanSquaredOff",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Defi.Loan[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -243,7 +331,7 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_loadId",
+				"name": "_loanId",
 				"type": "uint256"
 			}
 		],
@@ -317,6 +405,11 @@
 				"internalType": "bool",
 				"name": "loanRepayed",
 				"type": "bool"
+			},
+			{
+				"internalType": "bool",
+				"name": "loanSquaredOff",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -345,6 +438,25 @@
 		],
 		"name": "registerUser",
 		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_loanId",
+				"type": "uint256"
+			}
+		],
+		"name": "squareOff",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},

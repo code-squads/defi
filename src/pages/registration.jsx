@@ -1,21 +1,31 @@
 import { TextField } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useRouter } from "next/router";
+import Image from "next/Image";
 import React from "react";
 import { useState } from "react";
 // import { useMetamaskAuth, withConnectedRoute } from "../auth/authConfig";
 import { JUST_LOGGED_IN } from "../constants/routes";
 import axios from "axios";
 import AddImages from "./addImages";
+import TokenImg from "../assets/token.png"
+
 const API_URL = process.env.SERVER_URL || "";
 
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
 const invalidNumber = () => {
   toast("Enter a Valid No.");
 };
+
+
 
 // import { sendOTP, verifyOTP } from "../pages/api/otpVerification.js";
 
@@ -139,8 +149,14 @@ const Registration = () => {
   // if (isProcessingLogin) return <center><br/><br/><h1>Loading ....</h1></center>;
 
   return (
-    <div className="flex h-[calc(100vh-55px)] flex-row">
-      <div className="h-[100%] w-[50%]"></div>
+    <ThemeProvider theme={darkTheme}>
+    <div className="flex h-[calc(100vh-55px)] flex-row font-lexend bg-gradient-to-b from-[#12131A] to-[#130d30]">
+      <div className="h-[100%] w-[50%] justify-center " >
+        <div className=" w-[85%] mt-8 ml-14 mr-14 mb-8 font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-[#362DB5] to-[#A047B0]">
+        Join the Decentralized Finance Revolution Today - Sign Up Now!
+        </div>
+        <Image src={TokenImg} alt="" className=" mb-0 ml-32 mr-32 mt-0 h-auto w-auto"/>
+      </div>
 
       <div className="h-[100%] w-[50%] px-[8%]">
         <form
@@ -154,6 +170,7 @@ const Registration = () => {
               id="outlined-required"
               name="firstName"
               label="First Name"
+
               placeholder="John"
               size="small"
             />
@@ -184,7 +201,7 @@ const Registration = () => {
             </button>
             <AddImages></AddImages>
           </div>
-          <div className="flex flex-row flex-wrap gap-y-[40px] gap-x-[40px] mt-[40px]">
+          <div className="flex flex-row flex-wrap gap-y-[40px] gap-x-[40px] mt-[40px] ">
             <TextField
               required
               id="outlined-required"
@@ -223,6 +240,8 @@ const Registration = () => {
         </form>
       </div>
     </div>
+</ThemeProvider>
+
   );
 };
 

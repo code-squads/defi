@@ -23,7 +23,8 @@ const ParaImg = () => {
                 >
                   DeFi is a decentralized platform where people can find and
                   borrow with the assurance of money returns by collataral
-                  lending and borrowing with affordable interest without platform fees.
+                  lending and borrowing with affordable interest without
+                  platform fees.
                 </p>
               </div>
               <div>
@@ -61,7 +62,8 @@ const ParaImg = () => {
                   className="text-[1.4rem]"
                   style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
-                  Borrow and Lend amongst the blockchain end users at global level.
+                  Borrow and Lend amongst the blockchain end users at global
+                  level without any intermediataries.
                 </p>
               </div>
             </Container>
@@ -103,7 +105,8 @@ const ParaImg = () => {
                   className="text-[1.4rem]"
                   style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
-                  Share the tokens with the requested user with voluntarily handling the return after the repay duration.
+                  Share the tokens with the requested user with voluntarily
+                  handling the return after the repay duration .
                 </p>
               </div>
               <div>
@@ -141,7 +144,9 @@ const ParaImg = () => {
                     className="text-[1.4rem]"
                     style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                   >
-                    Every borrower must be aware of the loan duration and the rights which the lender has with this collateralized platform.
+                    Every borrower must be aware of the loan duration and the
+                    rights which the lender has with this collateralized
+                    platform.
                   </p>
                 </div>
               </div>

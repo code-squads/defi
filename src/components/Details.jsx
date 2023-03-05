@@ -4,7 +4,7 @@ import nft from "../assets/nft.jpeg";
 
 const Details = () => {
   return (
-    <div className="h-[100vh] text-white m-[6rem] p-[4rem]">
+    <div className="h-[100vh] text-white m-[6rem] mt-[14rem] p-[4rem]">
       <div className="">
         <div className="text-center flex mb-[1.5rem] flex-col justify-center align-middle">
           <div

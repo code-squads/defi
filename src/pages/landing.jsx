@@ -4,9 +4,9 @@ import Details from "../components/Details";
 
 export default function App() {
   return (
-    <div>
+    <div className="z-[-1] relative bg-[#12131A] ">
       <Background />
-      <Details />
+      <Details /> 
     </div>
   );
 }

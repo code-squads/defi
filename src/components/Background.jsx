@@ -22,13 +22,12 @@ const Background = () => {
           <Image
             src={LendingSs}
             alt="gg"
-            className=" h-auto w-5/6  opacity-75 rounded-lg drop-shadow-[0_35px_35px_rgba(54,45,101,0.7)]"
+            className=" h-5/6 w-5/6  opacity-75 drop-shadow-xl rounded-lg"
           />
           <Image
             src={BorrowSs}
             alt=""
-            className="absolute h-auto w-4/6 top-[50%] left-[35%] opacity-100 rounded-lg overflow-hidden z-[2] drop-shadow-[0_35px_35px_rgba(54,45,101,0.7)]"
-
+            className="absolute h-5/6 w-5/6 top-[50%] ml-[-35%] right-[35%] opacity-80 drop-shadow-xl rounded-lg overflow-hidden z-[-1]"
           />
         </div>
       </div>

@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div className="flex flex-row items-center w-[100%] h-[55px] px-[50px] box-border font-inter text-[24px] bg-[#12131A] text-white cursor-pointer">
       <img src="/assets/logo.svg" className="h-[25px] w-[25px] mr-[15px]"/>
-      <Link href={"/dashboard"}>DeFi</Link>
+      <Link href={"/"}>DeFi</Link>
 
       <div className="flex flex-row items-center gap-x-[60px] ml-auto text-[14px] font-medium font-inter text-white">
         {pathname == '/dashboard' 

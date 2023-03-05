@@ -37,12 +37,12 @@ const Details = () => {
               className="text-[17px]"
               style={{ color: "rgb(191, 191, 191)" }}
             >
-              USDC
+              USDT
             </div>
             <div style={{ color: "#6f8498", letterSpacing: '2px', fontSize: "1.2rem" }}>
-              USDC is a fully-reserved stablecoin, which is a type of
+              USDT is a fully-reserved stablecoin, which is a type of
               cryptocurrency, or digital asset. Unlike other cryptocurrencies
-              that fluctuate in price, USDC is designed to maintain price
+              that fluctuate in price, USDT is designed to maintain price
               equivalence to the U.S. dollar
             </div>
           </div>

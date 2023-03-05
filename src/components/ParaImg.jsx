@@ -13,18 +13,17 @@ const ParaImg = () => {
           <div className="w-[50%]">
             <Container>
               <div>
-                <div className="text-[4rem] ml-10" style={{ color: "white"}}>
+                <div className="text-[4rem] ml-10" style={{ color: "white" }}>
                   {" "}
                   Meet DeFi{" "}
                 </div>
                 <p
                   className="text-[1.4rem]"
-                  style={{ color: "rgb(108, 120, 147)" , marginLeft: '2rem' }}
+                  style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                  consequuntur quod odit, nulla soluta deserunt commodi nobis,
-                  quidem sed distinctio deleniti ut eligendi veniam quaerat
-                  vitae! Voluptatem laboriosam eaque nobis!
+                  DeFi is a decentralized platform where people can find and
+                  borrow with the assurance of money returns by collataral
+                  lending and borrowing with affordable interest without platform fees.
                 </p>
               </div>
               <div>
@@ -41,7 +40,7 @@ const ParaImg = () => {
                     <Image
                       src={joinImg}
                       alt="join"
-                      className="w-[300px] h-[300px]"   
+                      className="w-[300px] h-[300px]"
                     />
                   </div>
                 </Container>
@@ -52,10 +51,15 @@ const ParaImg = () => {
                     margin: "1rem",
                   }}
                 />
-                <div className="text-[2.2rem] font-medium" style={{color: 'white' , marginLeft: '2rem' }}>Competitive Returns</div>
+                <div
+                  className="text-[2.2rem] font-medium"
+                  style={{ color: "white", marginLeft: "2rem" }}
+                >
+                  Competitive Returns
+                </div>
                 <p
                   className="text-[1.4rem]"
-                  style={{ color: "rgb(108, 120, 147)" , marginLeft: '2rem' }}
+                  style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
                   Take advantage of some of the highest and most consistent
                   returns in DeFi on a growing range of assets
@@ -90,10 +94,15 @@ const ParaImg = () => {
                 }}
               />
               <div>
-                <div className="text-[2.2rem] font-medium" style={{color: 'white' , marginLeft: '2rem' }}>Competitive Returns</div>
+                <div
+                  className="text-[2.2rem] font-medium"
+                  style={{ color: "white", marginLeft: "2rem" }}
+                >
+                  Competitive Returns
+                </div>
                 <p
                   className="text-[1.4rem]"
-                  style={{ color: "rgb(108, 120, 147)" , marginLeft: '2rem' }}
+                  style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                 >
                   Take advantage of some of the highest and most consistent
                   returns in DeFi on a growing range of assets
@@ -124,12 +133,15 @@ const ParaImg = () => {
                   }}
                 />
                 <div>
-                  <div className="text-[2.2rem] font-medium" style={{color: 'white' , marginLeft: '2rem' }}>
+                  <div
+                    className="text-[2.2rem] font-medium"
+                    style={{ color: "white", marginLeft: "2rem" }}
+                  >
                     Competitive Returns
                   </div>
                   <p
                     className="text-[1.4rem]"
-                    style={{ color: "rgb(108, 120, 147)" , marginLeft: '2rem' }}
+                    style={{ color: "rgb(108, 120, 147)", marginLeft: "2rem" }}
                   >
                     Take advantage of some of the highest and most consistent
                     returns in DeFi on a growing range of assets

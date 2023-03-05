@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <center>
-        <br />
+        {/* <br /> */}
         <div className="z-[-1] relative bg-[#12131A] ">
           <Background />
           <Details />

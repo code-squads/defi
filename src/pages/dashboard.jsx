@@ -24,5 +24,5 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
-// export default withAuthenticatedRoute(Dashboard);
+// export default Dashboard
+export default withAuthenticatedRoute(Dashboard);

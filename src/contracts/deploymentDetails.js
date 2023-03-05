@@ -6,10 +6,9 @@ export const usdtContractAddress = "0X466DD1E48570FAA2E7F69B75139813E4F8EF75C2";
 export const contractDeploymentTxLink = `https://mumbai.polygonscan.com/tx/${contractDeploymentTx}`;
 
 
+// export const contractDeploymentTx ="0x643728ecd2b0d75b74b995bfeb090aaa84df2773d88602ffa8c29baf4d6e300b";
 
-// export const contractDeploymentTx ="";
-
-// export const contractAddress = "";
-// export const usdtContractAddress = "";
+// export const contractAddress = "0x37b75382E1CDe15869AaCaa335bb91d237ba8A3e";
+// export const usdtContractAddress = "0xF81495FAF99C41212f78EBcbfcB1D450320AF5C7";
 
 // export const contractDeploymentTxLink = `https://alfajores.celoscan.io/tx/${contractDeploymentTx}`;

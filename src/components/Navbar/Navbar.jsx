@@ -14,10 +14,10 @@ const Navbar = () => {
     setPathname(router.pathname)
   }, [router])
 
-  function disconnect() {
-    // Not sure how to do this yet :/
-    toast("Disconnected 🚧", { type: "error" });
-}
+  // function disconnect() {
+  //   // Not sure how to do this yet :/
+  //   toast("Disconnected 🚧", { type: "error" });
+  // }
 
   return (
     <div className="flex flex-row items-center w-[100%] h-[55px] px-[50px] box-border border-b-[1.2px] font-inter text-[24px] border-[#E1E1E1] bg-[#12131A] text-white cursor-pointer">
@@ -34,12 +34,14 @@ const Navbar = () => {
 
         {!isProcessingLogin ? (
           isLoggedIn ? (
-            <button
-              className="bg-white py-[8px] px-[24px] rounded-lg text-gray-600"
-              onClick={disconnect}
-            >
-              Disconnect
-            </button>
+            <>
+              {/* <button
+                className="bg-white py-[8px] px-[24px] rounded-lg text-gray-600"
+                onClick={disconnect}
+              >
+                Disconnect
+              </button> */}
+            </>
           ) : metaState?.isConnected ? (
             <Link
               href={ONBOARDING_ROUTE}

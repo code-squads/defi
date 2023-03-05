@@ -9,6 +9,9 @@ import { JUST_LOGGED_IN } from "../constants/routes";
 import axios from "axios";
 import AddImages from "./addImages";
 import TokenImg from "../assets/token.png"
+import { useMetamaskAuth, withConnectedRoute } from "../auth/authConfig";
+import { createProfile } from "../apis/user";
+import { toast } from "react-toastify";
 
 const API_URL = process.env.SERVER_URL || "";
 
@@ -31,10 +34,11 @@ const invalidNumber = () => {
 
 const Registration = () => {
   // const { metaState, isProcessingLogin, refreshAuthStatus } = useMetamaskAuth();
-
   const router = useRouter();
   const [date, setDate] = useState(null);
   const [receivedOtp, setReceivedOtp] = useState("");
+  // const [fname, setFname] = useState('');
+  // const [lname, setLname] = useState('');
   // const [inputOtp, setInputOTP] = useState('');
   const [successVerify, setSuccessVerify] = useState("");
   const [otp, setOTP] = useState("");
@@ -42,6 +46,7 @@ const Registration = () => {
   const [phone, setPhone] = useState("");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [correctOtp, setCorrectOtp] = useState(false);
+  const { metaState, refreshAuthStatus } = useMetamaskAuth();
 
   const customAxios = axios.create({
     baseURL: API_URL,
@@ -76,10 +81,15 @@ const Registration = () => {
   }
 
   const onClickOtp = () => {
-    sendOTP(phone);
+    if(!phone)
+      return;
+    sendOTP(phone)
+      .then(() => toast("OTP sent successfuly"));
   };
 
   const onCreateAccountHandler = (e) => {
+    const address = metaState.account[0];
+
     e.preventDefault();
     if (e.target.firstName.value.trim() === undefined || e.target.lastName.value.trim() === undefined){
       return;
@@ -87,17 +97,18 @@ const Registration = () => {
     else{
       console.log("SUCCESS LOGIN");
     }
-    console.log(e.target.firstName.value);
-    console.log(e.target.lastName.value);
+    const name = String(e.target.firstName.value || "") + " " + String(e.target.lastName.value || "");
+        
+    // const name = String(fname || "") + String(lname || "");
+    console.log(e);
+    console.log(name, address);
 
-    //     if (metaState?.account) {
-    //         // Call contract to create user here, with all user fields
-    //         setTimeout(() => {
-    //             localStorage.setItem(metaState.account[0], "yes");
-    //             refreshAuthStatus();
-    //             router.push(JUST_LOGGED_IN);
-    //         }, 2000);
-    //     }
+    createProfile(address, name)
+      .then(() => {
+        toast.success("Account created successfuly", { autoClose: 900 });
+        setTimeout(refreshAuthStatus, 2000);
+      })
+    return false;
   };
 
   const onClickVerify = () => {
@@ -105,6 +116,7 @@ const Registration = () => {
     // setInputOTP(otp);
     if (verifyOTP) {
       setCorrectOtp(true);
+      toast("OTP verified !");
     }
   };
 
@@ -170,7 +182,7 @@ const Registration = () => {
               id="outlined-required"
               name="firstName"
               label="First Name"
-
+              // onChange={e => setFname(e.target.value)}
               placeholder="John"
               size="small"
             />
@@ -181,6 +193,7 @@ const Registration = () => {
               label="Last Name"
               placeholder="Doe"
               size="small"
+              // onChange={e => setLname(e.target.value)}
             />
             <TextField
               required
@@ -193,7 +206,7 @@ const Registration = () => {
               size="small"
             />
             <button
-              type="submit"
+              type="button"
               className="bg-blue py-[8px] px-[24px] rounded-lg text-white"
               onClick={onClickOtp}
             >
@@ -215,7 +228,7 @@ const Registration = () => {
             />
 
             <button
-              type="submit"
+              type="button"
               disabled={isDisabled}
               className="bg-green-500 py-[8px] px-[24px] rounded-lg text-white"
               onClick={onClickVerify}
@@ -245,4 +258,5 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default withConnectedRoute(Registration);
+// export default Registration;

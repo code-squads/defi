@@ -1,3 +1,4 @@
+import { withAuthenticatedRoute } from "../auth/authConfig"
 import DashLeft from "../components/DashLeft/DashLeft"
 import MyAccountRight from "../components/MyAccountRight/MyAccountRight"
 
@@ -14,4 +15,4 @@ const MyAccount = () => {
     )
 }
 
-export default MyAccount
+export default withAuthenticatedRoute(MyAccount);

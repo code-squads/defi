@@ -5,7 +5,7 @@ import {
     PreviewImage,
     Circle,
     Cross,
-} from "./ImagesPreview.styled"
+} from "../components/styled/ImagesPreview.styled"
 import CrossIcon from "../assets/illustrations/crossIcon.svg"
 
 const ImagesPreview = ({

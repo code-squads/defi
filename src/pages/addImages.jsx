@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { 
     AddPhotos,
-    Container,
-} from "./AddImages.styled"
+    Container
+} from "../components/styled/AddImages.styled"
 import ImagesPreview from "./ImagesPreview"
 const MAXSIZE = 1
 

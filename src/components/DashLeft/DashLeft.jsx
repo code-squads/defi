@@ -99,11 +99,11 @@ const DashLeft = () => {
               /> */}
               <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                   <div className="flex justify-center w-[40px] h-[40px] rounded-full bg-white p-[4px] box-border">
-                    <img src="./assets/matic.svg" alt="maticLogo"/>
+                    <img src="./assets/eth.png" alt="ethLogo"/>
                   </div>
-                  MATIC
+                  ETH
               </div>
-              {/* <span className="m-2">MATIC</span> */}
+              {/* <span className="m-2">ETH</span> */}
             </div>
             <div>
               <div className="text-right mr-[15px]" style={{ color: "#696c80" }}>Price</div>
@@ -130,7 +130,7 @@ const DashLeft = () => {
                   <img className="w-[40px] h-[40px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                   USDT
               </div>
-              {/* <span className="m-2">MATIC</span> */}
+              {/* <span className="m-2">ETH</span> */}
             </div>
             <div>
               <div>Price</div>
@@ -168,11 +168,11 @@ const DashLeft = () => {
               /> */}
               <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[50px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                   <div className="flex justify-center w-[40px] h-[40px] rounded-full bg-white p-[4px] box-border">
-                    <img src="./assets/matic.svg" alt="maticLogo"/>
+                    <img src="./assets/eth.png" alt="ethLogo"/>
                   </div>
-                  MATIC
+                  ETH
               </div>
-              {/* <span className="m-2">MATIC</span> */}
+              {/* <span className="m-2">ETH</span> */}
             </div>
             <div>
               <div style={{ color: "#696c80" }}>Price</div>
@@ -199,7 +199,7 @@ const DashLeft = () => {
                   <img className="w-[40px] h-[40px] rounded-full" src="./assets/usdc.svg" alt="usdcLogo"/>
                   USDT
               </div>
-              {/* <span className="m-2">MATIC</span> */}
+              {/* <span className="m-2">ETH</span> */}
             </div>
             <div>
               <div>Price</div>
@@ -236,7 +236,7 @@ const DashLeft = () => {
                 height="50"
                 style={{ borderRadius: "50px" }}
               />
-              <span className="m-2">MATIC</span>
+              <span className="m-2">ETH</span>
             </div>
             <div>
               <div></div>

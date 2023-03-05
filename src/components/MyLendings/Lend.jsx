@@ -87,7 +87,7 @@ const MyBorrowings = () => {
                                         <div>Collateral amount: </div>
                                         &nbsp;{weiToEth(data.collateralAmount).toFixed(4)}
                                         <div className="flex justify-center w-[20px] h-[20px] rounded-full bg-white p-[4px] box-border ml-[5px]">
-                                            <img src="./assets/matic.svg" alt="maticLogo"/>
+                                            <img src="./assets/eth.png" alt="ethLogo"/>
                                         </div>
                                     </div>
                                 </div>
@@ -186,9 +186,9 @@ const MyBorrowings = () => {
                         <div className="ml-auto text-right text-[#696c80] font-medium mr-[10px]">{weiToEth(selectedBorrower.collateralAmount).toFixed(4)}</div>
                         <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                             <div className="flex justify-center w-[30px] h-[30px] rounded-full bg-white p-[4px] box-border">
-                                <img src="./assets/matic.svg" alt="maticLogo"/>
+                                <img src="./assets/eth.png" alt="ethLogo"/>
                             </div>
-                            MATIC
+                            ETH
                         </div>
                     </div>
 

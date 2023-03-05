@@ -4,7 +4,7 @@ import { borrowRequest } from "../../apis/lending"
 import { useMetamaskAuth } from "../../auth/authConfig"
 
 function collateralCalculator(loanAmount, repayDays){
-    return (parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639 + 0.005;
+    return ((parseInt(loanAmount) + (parseInt(loanAmount)*(0.1*repayDays)/100))*0.000639 + 0.005) * 1.3;
 }
 
 const Borrow = () => {
@@ -123,9 +123,9 @@ const Borrow = () => {
                 </div>
                 <div className="flex flex-row items-center gap-x-[10px] text-[14px] text-white w-auto h-[40px] p-[5px] px-[8px] rounded-[20px] font-medium pr-[15px] ml-[10px] bg-[#404557]">
                     <div className="flex justify-center w-[30px] h-[30px] rounded-full bg-white p-[4px] box-border">
-                        <img src="./assets/matic.svg" alt="maticLogo"/>
+                        <img src="./assets/eth.png" alt="ethLogo"/>
                     </div>
-                    MATIC
+                    ETH
                 </div>
             </div>
 

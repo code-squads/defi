@@ -1,9 +1,5 @@
 import { Container } from "@mui/system";
-import Image from "next/Image";
 import React from "react";
-import joinImg from "../assets/undraw_join_re_w1lh.svg";
-import warningImg from "../assets/undraw_warning_re_eoyh.svg";
-import sharingImg from "../assets/undraw_sharing_knowledge_03vp.svg";
 
 const ParaImg = () => {
   return (
@@ -38,8 +34,8 @@ const ParaImg = () => {
                   }}
                 >
                   <div className=" flex justify-center align-middle">
-                    <Image
-                      src={joinImg}
+                    <img
+                      src='/assets/undraw_join_re_w1lh.svg'
                       alt="join"
                       className="w-[300px] h-[300px]"   
                     />
@@ -75,8 +71,8 @@ const ParaImg = () => {
                 }}
               >
                 <div className=" flex justify-center align-middle">
-                  <Image
-                    src={sharingImg}
+                  <img
+                    src='/assets/undraw_sharing_knowledge_03vp.svg'
                     alt="join"
                     className="w-[300px] h-[300px]"
                   />
@@ -110,8 +106,8 @@ const ParaImg = () => {
                   }}
                 >
                   <div className=" flex justify-center align-middle">
-                    <Image
-                      src={warningImg}
+                    <img
+                      src='/assets/undraw_warning_re_eoyh.svg'
                       alt="join"
                       className="w-[300px] h-[300px]"
                     />

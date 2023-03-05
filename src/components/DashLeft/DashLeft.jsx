@@ -1,15 +1,10 @@
 import React from "react";
-import pfp from "../../assets/nft.jpeg";
-import matic from "../../assets/matic.png";
-import usdc from "../../assets/usdc.png";
-import Image from "next/image";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Container } from "@mui/material";
 import { useMetamaskAuth } from "../../auth/authConfig";
-import Loader from "../Loader/Loader";
 import { getUsdtBalance, getMaticBalance } from "../../apis/balances";
-import { borrowRequest } from "../../apis/lending";
+import Image from "next/image";
 
 const randPriceFluctuations = range => Number((Math.random() * (range*2 + 1)-range).toFixed(2));
 
@@ -62,7 +57,7 @@ const DashLeft = () => {
       <Container className="text-white">
         <div className="flex p-5">
           <Image
-            src={pfp}
+            src='/assets/nft.jpeg'
             alt="image"
             width="50"
             height="50"
@@ -90,7 +85,7 @@ const DashLeft = () => {
         <div>
           <div className="flex justify-between">
             <div className="flex items-center">
-              {/* <Image
+              {/* <img
                 src={matic}
                 alt="matic"
                 width="50"
@@ -119,7 +114,7 @@ const DashLeft = () => {
         <div>
           <div className="flex justify-between mt-3">
             <div className="flex">
-              {/* <Image
+              {/* <img
                 src={usdc}
                 alt="matic"
                 width="50"
@@ -159,7 +154,7 @@ const DashLeft = () => {
         </div>
           <div className="flex justify-between mb-4">
             <div className="flex items-center">
-              {/* <Image
+              {/* <img
                 src={matic}
                 alt="matic"
                 width="50"
@@ -188,7 +183,7 @@ const DashLeft = () => {
         <div>
           <div className="flex justify-between mt-3 mb-2">
             <div className="flex">
-              {/* <Image
+              {/* <img
                 src={usdc}
                 alt="matic"
                 width="50"
@@ -211,64 +206,6 @@ const DashLeft = () => {
           {/* <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div> */}
         </div>
       </Container>
-
-      {/* User's balance details  */}
-      {/* <Container
-        className="bg-slate-300 m-10 rounded-xl p-5 "
-        style={{
-          maxWidth: "90%",
-          backgroundColor: "#1b1e29",
-          borderRadius: "20px",
-          color: "#c7cad9",
-        }}
-      >
-        <div className="flex justify-between mb-5" style={{ color: "#696c80" }}>
-          <div>My tokens</div>
-          <div>Current Value</div>
-        </div>
-        <div>
-          <div className="flex justify-between">
-            <div className="flex">
-              <Image
-                src={matic}
-                alt="matic"
-                width="50"
-                height="50"
-                style={{ borderRadius: "50px" }}
-              />
-              <span className="m-2">ETH</span>
-            </div>
-            <div>
-              <div></div>
-              <div className="mt-1">
-                { maticBalance.toFixed(4) } (${ (maticVal.rate * maticBalance).toFixed(2) })
-              </div>
-            </div>
-          </div>
-          <div className="m-2 text-[#4489ff] text-[12px] overflow-ellipsis overflow-hidden">0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270</div>
-        </div>
-        <hr style={{ background: "#C77DFF", height: "0.05px" }} />
-        <div>
-          <div className="flex justify-between mt-3">
-            <div className="flex">
-              <Image
-                src={usdc}
-                alt="matic"
-                width="50"
-                height="50"
-                style={{ borderRadius: "50px" }}
-              />
-              <span className="m-2">USDT</span>
-            </div>
-            <div>
-              <div className="mt-2">
-                { usdtBalance.toFixed(2) } (${ (usdVal.rate * usdtBalance).toFixed(2) })
-              </div>
-            </div>
-          </div>
-          <div className="mt-2"></div>
-        </div>
-      </Container> */}
     </div>
   );
 };

@@ -22,9 +22,9 @@ const Details = () => {
           </div>
         </div>
         <div className="w-full flex">
-          <div className="text-center max-w-[33.33%] bg-[#000000] m-2 p-10 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
+          <div className="text-center max-w-[33.33%] bg-[#000000] m-2 p-10 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-95 rounded-xl">
             <div className="w-[4rem] border- h-[4rem] inline-block relative ">
-              <Image
+              <img
                 src='/assets/usdc.png'
                 alt="nft"
                 width="50"
@@ -45,9 +45,9 @@ const Details = () => {
               equivalence to the U.S. dollar
             </div>
           </div>
-          <div className="text-center p-10 max-w-[33.33%] bg-[#000000] m-2 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
+          <div className="text-center p-10 max-w-[33.33%] bg-[#000000] m-2 drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-95 rounded-xl">
             <div className="w-[4rem] border- h-[4rem] inline-block relative ">
-              <Image
+              <img
                 src='/assets/ethLogo.png'
                 alt="nft"
                 width="50"
@@ -59,7 +59,7 @@ const Details = () => {
               className="text-[17px]"
               style={{ color: "rgb(191, 191, 191)" }}
             >
-              Etherium
+              Ethereum
             </div>
             <div style={{ color: "#6f8498", letterSpacing: '2px', fontSize: "1.2rem" }}>
               Ethereum is a decentralized, open-source blockchain with smart
@@ -67,9 +67,9 @@ const Details = () => {
               platform.
             </div>
           </div>
-          <div className="text-center max-w-[33.33%] m-2 p-10 bg-[#000000] drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-70 rounded-xl">
+          <div className="text-center max-w-[33.33%] m-2 p-10 bg-[#000000] drop-shadow-[0_15px_20px_rgba(54,45,101,0.7)] opacity-95 rounded-xl">
             <div className="w-[4rem] border- h-[4rem] inline-block relative ">
-              <Image
+              <img
                 src='/assets/matic.png'
                 alt="nft"
                 width="50"

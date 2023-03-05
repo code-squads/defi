@@ -34,7 +34,7 @@ const Background = () => {
         </div>
         <div className="z-[2] w-1/2 flex-1 m-16 mr-0 relative overflow-x-clip">
           <img
-            src='/assets/LandingSs.jpeg'
+            src='/assets/LendingSs.jpeg'
             alt="gg"
             // width="50"
             // height="50"

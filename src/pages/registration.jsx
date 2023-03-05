@@ -1,14 +1,12 @@
 import { TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useRouter } from "next/router";
-import Image from "next/Image";
 import React from "react";
 import { useState } from "react";
 // import { useMetamaskAuth, withConnectedRoute } from "../auth/authConfig";
 import { JUST_LOGGED_IN } from "../constants/routes";
 import axios from "axios";
 import AddImages from "./addImages";
-import TokenImg from "../assets/token.png"
 import { useMetamaskAuth, withConnectedRoute } from "../auth/authConfig";
 import { createProfile } from "../apis/user";
 import { toast } from "react-toastify";
@@ -167,7 +165,7 @@ const Registration = () => {
         <div className=" w-[85%] mt-8 ml-14 mr-14 mb-8 font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-[#362DB5] to-[#A047B0]">
         Join the Decentralized Finance Revolution Today - Sign Up Now!
         </div>
-        <Image src={TokenImg} alt="" className=" mb-0 ml-32 mr-32 mt-0 h-auto w-auto"/>
+        <img src='/assets/token.png' alt="" className="max-w-md mb-0 ml-32 mr-32 mt-0 h-auto w-auto"/>
       </div>
 
       <div className="h-[100%] w-[50%] px-[8%]">

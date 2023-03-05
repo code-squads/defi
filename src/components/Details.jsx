@@ -19,7 +19,7 @@ const Details = () => {
             style={{ color: "rgb(111, 132, 152)" }}
           >
             {" "}
-            Here are a few other reasons why you should choose 88mph{" "}
+            Here are a few other reasons why you should choose this DeFi{" "}
           </div>
         </div>
         <div className="w-full flex">

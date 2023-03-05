@@ -7,7 +7,7 @@ import BorrowSs from "../assets/borrowSs.jpeg";
 const Background = () => {
   return (
     <>
-<div className="z-[0] absolute top-0 h-[95vh] w-screen  ">
+      <div className="z-[0] absolute top-0 h-[95vh] w-screen  ">
         <Spline
           scene="https://prod.spline.design/R7u20LxCiHGFBQGE/scene.splinecode"
           className="z-[0]"
@@ -22,12 +22,13 @@ const Background = () => {
           <Image
             src={LendingSs}
             alt="gg"
-            className=" h-5/6 w-5/6  opacity-75 drop-shadow-xl rounded-lg"
+            className=" h-auto w-5/6  opacity-75 rounded-lg drop-shadow-[0_35px_35px_rgba(54,45,101,0.7)]"
           />
           <Image
             src={BorrowSs}
             alt=""
-            className="absolute h-5/6 w-5/6 top-[50%] ml-[-35%] right-[35%] opacity-80 drop-shadow-xl rounded-lg overflow-hidden z-[-1]" 
+            className="absolute h-auto w-4/6 top-[50%] left-[35%] opacity-100 rounded-lg overflow-hidden z-[2] drop-shadow-[0_35px_35px_rgba(54,45,101,0.7)]"
+
           />
         </div>
       </div>

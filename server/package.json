@@ -23,7 +23,7 @@
     "mongoose": "^6.1.1",
     "nodemon": "^2.0.15",
     "styled-components": "^5.3.8",
-    "twilio": "^3.71.3",
+    "twilio": "^4.8.0",
     "uuid": "^8.3.2"
   }
 }
